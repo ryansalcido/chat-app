@@ -3,11 +3,9 @@ name: Next.js
 on:
   pull_request:
     branches: [ main ]
-  push:
-    branches: [ main ]
 
 jobs:
-  build-deploy:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -30,24 +28,3 @@ jobs:
       - name: Build Next.js
         run: |
           npm run build
-
-      - name: Deploy to Production
-        uses: easingthemes/ssh-deploy@v2
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
-          REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
-          REMOTE_USER: ${{ secrets.DEPLOY_USER }}
-          SOURCE: "."
-          TARGET: ${{ secrets.DEPLOY_TARGET }}
-
-      - name: Run deployed code via SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          script: |
-            cd ${{ secrets.DEPLOY_TARGET }}
-            pm2 stop --silent chat-app
-            pm2 delete --silent chat-app
-            pm2 start npm --name "chat-app" -- start
