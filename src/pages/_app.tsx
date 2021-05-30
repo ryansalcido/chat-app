@@ -8,6 +8,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     <Fragment>
       <Head>
         <title>Chat Application with Next.js</title>
+        <link rel="icon" href={`${process.env.BASE_PATH}/favicon.ico`} />
       </Head>
       <Component {...pageProps} />
     </Fragment>
