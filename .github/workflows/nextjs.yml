@@ -22,9 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Next.js dependencies
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Build Next.js
-        run: |
-          npm run build
+        run: npm run build
