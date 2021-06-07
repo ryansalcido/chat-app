@@ -5,5 +5,6 @@ module.exports = {
   env: {
     BASE_PATH
   },
-  basePath: BASE_PATH
+  basePath: BASE_PATH,
+  poweredByHeader: false
 };

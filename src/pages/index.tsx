@@ -1,17 +1,17 @@
 import { NextPage } from "next";
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/client";
 
 
 const Home: NextPage = () => {
   const [ session ] = useSession();
-
   return (
-    <div className="text-center">
-      <h1 className="text-5xl">Chat Application</h1>
-
+    <div>
+      <h1 className="text-5xl text-center">Chat Application</h1>
       {!session && <>
         Not signed in <br/>
-        <button onClick={() => signIn()}>Sign in</button>
+        <Link href="/auth/login">Sign in</Link>
+        {/* <button onClick={() => signIn()}>Sign in</button> */}
       </>}
       {session && <>
         <pre>Signed in as {JSON.stringify(session)}</pre>

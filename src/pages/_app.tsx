@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { Provider } from "next-auth/client";
+import Layout from "../components/Layout";
 import "tailwindcss/tailwind.css";
 
 // Override 'next-auth' base path for API route based on dev/prod environment
@@ -15,7 +16,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
         <link rel="icon" href={`${process.env.BASE_PATH}/favicon.ico`} />
       </Head>
       <Provider session={pageProps.session} options={{ basePath }}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
     </Fragment>
   );
