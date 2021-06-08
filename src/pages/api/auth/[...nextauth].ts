@@ -13,6 +13,7 @@ export default NextAuth({
     })
   ],
   pages: {
-    signIn: "/auth/signin"
+    signIn: "/auth/login",
+    error: "/auth/login"
   }
 });

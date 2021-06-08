@@ -4,7 +4,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
-    <div className="h-screen p-8 dark:bg-gray-900 dark:text-white">
+    <div className="h-screen p-8 dark:bg-gray-900">
       {children}
     </div>
   );
