@@ -1,11 +1,12 @@
+import "../styles/tailwind.css";
 import { Fragment } from "react";
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { Provider } from "next-auth/client";
-import "tailwindcss/tailwind.css";
+import Layout from "../components/Layout";
 
-// Override 'next-auth' base path for API route based on dev/prod environment
-const basePath = process.env.NODE_ENV === "production" ? "/chat/api/auth" : "/api/auth";
+// Override 'next-auth' base path for API
+const basePath = `${process.env.BASE_PATH}/api/auth`;
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
@@ -15,7 +16,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
         <link rel="icon" href={`${process.env.BASE_PATH}/favicon.ico`} />
       </Head>
       <Provider session={pageProps.session} options={{ basePath }}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
     </Fragment>
   );
