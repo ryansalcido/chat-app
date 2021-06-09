@@ -13,7 +13,7 @@ export default NextAuth({
     })
   ],
   pages: {
-    signIn: "/auth/login",
-    error: "/auth/login"
+    signIn: `${process.env.BASE_PATH}/auth/login`,
+    error: `${process.env.BASE_PATH}/auth/login`
   }
 });

@@ -5,8 +5,8 @@ import { AppProps } from "next/app";
 import { Provider } from "next-auth/client";
 import Layout from "../components/Layout";
 
-// Override 'next-auth' base path for API route based on dev/prod environment
-const basePath = process.env.NODE_ENV === "production" ? "/chat/api/auth" : "/api/auth";
+// Override 'next-auth' base path for API
+const basePath = `${process.env.BASE_PATH}/api/auth`;
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
