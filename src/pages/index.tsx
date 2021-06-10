@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/client";
 const Home: NextPage = () => {
   const [ session ] = useSession();
   return (
-    <div className="text-black dark:text-white">
+    <div className="dark:text-white">
       <h1 className="text-5xl text-center">Chat Application</h1>
       {!session && <>
         Not signed in <br/>

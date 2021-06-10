@@ -1,11 +1,16 @@
-type LayoutProps = {
-  children: React.ReactNode
+import Header from "./Header";
+
+interface LayoutProps {
+  children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
-    <div className="h-screen p-8 dark:bg-gray-900">
-      {children}
+    <div className="h-screen bg-white dark:bg-gray-900">
+      <Header />
+      <div className="p-6">
+        {children}
+      </div>
     </div>
   );
 };
