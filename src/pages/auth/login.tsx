@@ -46,7 +46,7 @@ const Login = (): JSX.Element => {
       <h1 className="text-5xl pb-6 dark:text-white">Log in to Chat</h1>
 
       {error && (
-        <div className="bg-purple-600 rounded mb-7 p-2 text-center w-80 origin-top animate-pulse-3 text-white">
+        <div className="bg-red-500 rounded mb-7 p-2 text-center w-80 origin-top animate-pulse-3 text-white">
           <p>{error}</p>
         </div>
       )}

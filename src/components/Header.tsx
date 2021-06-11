@@ -1,21 +1,43 @@
 import Link from "next/link";
-import { useTheme } from "../hooks/useTheme";
+import { useRouter } from "next/router";
+import { signOut, useSession } from "next-auth/client";
+import { LockClosedIcon, ChatIcon, LockOpenIcon } from "@heroicons/react/solid";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = (): JSX.Element => {
-  const [ , toggleTheme ] = useTheme();
+  const router = useRouter();
+  const [ session ] = useSession();
 
   return (
-    <nav className="bg-gray-600 px-6 py-2 dark:bg-gray-400">
-      <button
-        className="bg-green-400 p-1 rounded dark:bg-red-400"
-        onClick={toggleTheme}
-      >
-        Toggle theme
-      </button>
-
-      <Link href="/">
-        <a>Home</a>
-      </Link>
+    <nav className="flex items-center justify-between bg-gray-400 px-6 py-2">
+      <div className="flex items-center space-x-2">
+        <ChatIcon className="w-8 h-8" />
+        <Link href="/">
+          <a className="text-2xl">Chat</a>
+        </Link>
+      </div>
+      
+      <div className="flex items-center space-x-3">
+        <ThemeSwitch />
+        {!session && (
+          <button
+            className="flex items-center bg-green-600 p-2 rounded space-x-2 hover:bg-green-500 focus:outline-none transition ease duration-500"
+            onClick={() => router.push("/auth/login")}
+          >
+            <LockClosedIcon className="w-6 h-6" />
+            <span>Log in</span>
+          </button>
+        )}
+        {session && (
+          <button
+            className="flex items-center bg-green-600 p-2 rounded space-x-2"
+            onClick={() => signOut()}
+          >
+            <LockOpenIcon className="w-6 h-6" />
+            <span>Log out</span>
+          </button>
+        )}
+      </div>
     </nav>
   );
 };

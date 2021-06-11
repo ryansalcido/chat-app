@@ -10,6 +10,8 @@
     "lint:fix": "eslint . --ext .ts,.js,.tsx --fix"
   },
   "dependencies": {
+    "@headlessui/react": "^1.2.0",
+    "@heroicons/react": "^1.0.1",
     "next": "^10.2.3",
     "next-auth": "^3.24.0",
     "react": "17.0.2",
