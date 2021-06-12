@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/client";
@@ -16,7 +17,7 @@ const Header = (): JSX.Element => {
           <a className="text-2xl">Chat</a>
         </Link>
       </div>
-      
+
       <div className="flex items-center space-x-3">
         <ThemeSwitch />
         {!session && (
@@ -29,13 +30,16 @@ const Header = (): JSX.Element => {
           </button>
         )}
         {session && (
-          <button
-            className="flex items-center bg-green-600 p-2 rounded space-x-2"
-            onClick={() => signOut()}
-          >
-            <LockOpenIcon className="w-6 h-6" />
-            <span>Log out</span>
-          </button>
+          <Fragment>
+            <button
+              className="flex items-center bg-green-600 p-2 rounded space-x-2"
+              onClick={() => signOut()}
+            >
+              <LockOpenIcon className="w-6 h-6" />
+              <span>Log out</span>
+            </button>
+            <img src={session.user?.image} height={36} width={36} className="rounded-full shadow-md" />
+          </Fragment>
         )}
       </div>
     </nav>
