@@ -1,9 +1,9 @@
-import { Fragment } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/client";
-import { LockClosedIcon, ChatIcon, LockOpenIcon } from "@heroicons/react/solid";
+import { useSession } from "next-auth/client";
+import { LockClosedIcon, ChatIcon } from "@heroicons/react/solid";
 import ThemeSwitch from "./ThemeSwitch";
+import AuthenticatedMenuDropdown from "./AuthenticatedMenuDropdown";
 
 const Header = (): JSX.Element => {
   const router = useRouter();
@@ -29,18 +29,7 @@ const Header = (): JSX.Element => {
             <span>Log in</span>
           </button>
         )}
-        {session && (
-          <Fragment>
-            <button
-              className="flex items-center bg-green-600 p-2 rounded space-x-2"
-              onClick={() => signOut()}
-            >
-              <LockOpenIcon className="w-6 h-6" />
-              <span>Log out</span>
-            </button>
-            <img src={session.user?.image} height={36} width={36} className="rounded-full shadow-md" />
-          </Fragment>
-        )}
+        {session && <AuthenticatedMenuDropdown session={session} />}
       </div>
     </nav>
   );

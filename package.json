@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .ts,.js,.tsx",
-    "lint:fix": "eslint . --ext .ts,.js,.tsx --fix"
+    "lint:fix": "eslint . --ext .ts,.js,.jsx,.tsx --fix"
   },
   "dependencies": {
     "@headlessui/react": "^1.2.0",
