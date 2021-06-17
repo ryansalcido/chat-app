@@ -43,17 +43,17 @@ const Login = (): JSX.Element => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-5xl pb-6 text-black dark:text-white">Log in to Chat</h1>
+      <h1 className="text-5xl pb-6 dark:text-white">Log in to Chat</h1>
 
       {error && (
-        <div className="text-white bg-purple-600 rounded mb-7 p-2 text-center w-80 origin-top animate-pulse-3">
+        <div className="bg-red-500 rounded mb-7 p-2 text-center w-80 origin-top animate-pulse-3 text-white">
           <p>{error}</p>
         </div>
       )}
 
       <div className="w-80 space-y-4">
         <button
-          className="flex text-lg items-center space-x-3 w-full bg-[#333333] text-white p-3 rounded hover:bg-gray-600 shadow-md focus:outline-none transition ease-out duration-500"
+          className="flex text-lg items-center space-x-3 w-full bg-gray-700 text-white p-3 rounded hover:bg-gray-600 shadow-md focus:outline-none transition ease-out duration-500"
           onClick={() => signIn("github")}
         >
           <Image src={`${process.env.BASE_PATH}/github.svg`} width={26} height={26} />
