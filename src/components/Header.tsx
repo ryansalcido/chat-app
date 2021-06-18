@@ -7,7 +7,7 @@ import AuthenticatedMenuDropdown from "./AuthenticatedMenuDropdown";
 
 const Header = (): JSX.Element => {
   const router = useRouter();
-  const [ session ] = useSession();
+  const [ session, loading ] = useSession();
 
   return (
     <nav className="flex items-center justify-between bg-gray-400 px-6 py-2">
@@ -20,7 +20,7 @@ const Header = (): JSX.Element => {
 
       <div className="flex items-center space-x-3">
         <ThemeSwitch />
-        {!session && (
+        {!session && !loading && (
           <button
             className="flex items-center bg-green-600 p-2 rounded space-x-2 hover:bg-green-500 focus:outline-none transition ease duration-500"
             onClick={() => router.push("/auth/login")}
@@ -29,7 +29,7 @@ const Header = (): JSX.Element => {
             <span>Log in</span>
           </button>
         )}
-        {session && <AuthenticatedMenuDropdown session={session} />}
+        {session && !loading && <AuthenticatedMenuDropdown session={session} />}
       </div>
     </nav>
   );
