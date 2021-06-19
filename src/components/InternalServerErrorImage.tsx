@@ -1,10 +1,10 @@
-interface BugFixingImageProps {
+interface InternalServerErrorImageProps {
   width?: number,
   height?: number,
   className?: string
 }
 
-const BugFixingImage = (props: BugFixingImageProps): JSX.Element => {
+const InternalServerErrorImage = (props: InternalServerErrorImageProps): JSX.Element => {
   return (
     <svg
       data-name="Layer 1"
@@ -27,7 +27,7 @@ const BugFixingImage = (props: BugFixingImageProps): JSX.Element => {
           <stop offset={1} stopColor="gray" stopOpacity={0.1} />
         </linearGradient>
       </defs>
-      <title>{"bug fixing"}</title>
+      <title>{"Internal Server Error"}</title>
       <ellipse
         cx={468.63}
         cy={660.88}
@@ -331,4 +331,4 @@ const BugFixingImage = (props: BugFixingImageProps): JSX.Element => {
   );
 };
 
-export default BugFixingImage;
+export default InternalServerErrorImage;
