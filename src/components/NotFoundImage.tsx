@@ -87,7 +87,6 @@ const NotFoundImage = (props: NotFoundImageProps):JSX.Element => {
       <path
         d="M25.484 551.879c-1.176-5.986 3.918-11.292 8.949-14.741s10.91-6.838 12.626-12.692c2.467-8.412-4.881-16.116-10.601-22.76a82.324 82.324 0 01-10.856-16.135 22.21 22.21 0 01-2.597-7.336c-.451-3.729.747-7.44 1.954-10.996q6.03-17.774 12.896-35.25"
         fill="none"
-        // stroke="#3f3d56"
         className="stroke-current text-gray-900 dark:text-gray-300"
         strokeMiterlimit={10}
       />
