@@ -1,13 +1,7 @@
-# Ignore everything
-*
-
-# Allow
-!src/
-!public
-!Dockerile
-!next*
-!package.json
-!package-lock.json
-!postcss.config.js
-!tailwind.config.js
-!tsconfig.json
+node_modules/
+.env.*
+.next/
+.git/
+.github/
+.eslintrc
+*.md
