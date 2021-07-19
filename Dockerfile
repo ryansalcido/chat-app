@@ -7,11 +7,11 @@ WORKDIR /usr/src/app
 COPY ./package.json ./
 COPY ./package-lock.json ./
 RUN npm ci
-COPY . ./
+COPY --chown=node:node . ./
 
 RUN --mount=type=secret,id=env,target=/usr/src/app/.env.production npm run build
 
-RUN chown -R node:node /usr/src/app
+# RUN chown -R node:node /usr/src/app
 
 USER node
 
