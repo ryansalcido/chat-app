@@ -7,13 +7,14 @@ WORKDIR /usr/src/app
 COPY ./package.json ./
 COPY ./package-lock.json ./
 RUN npm ci
-COPY ./next-env.d.ts ./next-env.d.ts
-COPY ./postcss.config.js ./postcss.config.js
-COPY ./tsconfig.json ./tsconfig.json
-COPY ./public ./public
-COPY ./next.config.js ./next.config.js
-COPY ./tailwind.config.js ./tailwind.config.js
-COPY ./src ./src
+COPY ./ ./
+# COPY ./next-env.d.ts ./next-env.d.ts
+# COPY ./postcss.config.js ./postcss.config.js
+# COPY ./tsconfig.json ./tsconfig.json
+# COPY ./public ./public
+# COPY ./next.config.js ./next.config.js
+# COPY ./tailwind.config.js ./tailwind.config.js
+# COPY ./src ./src
 
 RUN --mount=type=secret,id=env,target=/usr/src/app/.env.production npm run build
 

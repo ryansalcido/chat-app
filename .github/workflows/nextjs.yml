@@ -40,6 +40,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
+            docker pull ${{ env.REGISTRY }}/${{ github.repository }}
             docker stop chat_app || true
             docker rm chat_app || true
             docker run -d --name chat_app -v ${{ secrets.ENV_PRODUCTION_FILE_PATH }}:/usr/src/app/.env.production -p 3000:3000 ${{ env.REGISTRY }}/${{ github.repository }}
