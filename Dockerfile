@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1.2
+# syntax=docker/dockerfile:1
 
 FROM node:14.17.3-alpine3.11
 
