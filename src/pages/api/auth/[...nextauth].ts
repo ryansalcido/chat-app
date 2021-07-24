@@ -15,5 +15,6 @@ export default NextAuth({
   pages: {
     signIn: `${process.env.BASE_PATH}/auth/login`,
     error: `${process.env.BASE_PATH}/auth/login`
-  }
+  },
+  database: process.env.MONGODB_URI
 });

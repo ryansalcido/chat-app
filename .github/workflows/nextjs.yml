@@ -1,11 +1,18 @@
-name: Next.js
+name: Next.js CI/CD
 
 on:
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
-  build:
+  build-test:
 
     runs-on: ubuntu-latest
 
@@ -24,5 +31,46 @@ jobs:
       - name: Install Next.js dependencies
         run: npm ci
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build Next.js
         run: npm run build
+
+  docker:
+    needs: "build-test"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}
+          secrets: |
+            "env=${{ secrets.ENV_PRODUCTION }}"
+
+      - name: Run Docker image
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            docker pull ${{ env.REGISTRY }}/${{ github.repository }}
+            docker stop chat_app || true
+            docker rm chat_app || true
+            docker run -d --name chat_app \
+              -v ${{ secrets.ENV_PRODUCTION_FILE_PATH }}:/usr/src/app/.env.production \
+              -p 3000:3000 \
+              ${{ env.REGISTRY }}/${{ github.repository }}
