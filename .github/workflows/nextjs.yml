@@ -12,7 +12,33 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
+  build-test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install Next.js dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build Next.js
+        run: npm run build
+
   docker:
+    needs: "build-test"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,12 +54,13 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ github.repository }}
           secrets: |
             "env=${{ secrets.ENV_PRODUCTION }}"
 
       - name: Run Docker image
+        if: ${{ github.event_name != 'pull_request' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -47,34 +74,3 @@ jobs:
               -v ${{ secrets.ENV_PRODUCTION_FILE_PATH }}:/usr/src/app/.env.production \
               -p 3000:3000 \
               ${{ env.REGISTRY }}/${{ github.repository }}
-
-
-
-# name: Next.js
-
-# on:
-#   pull_request:
-#     branches: [ main ]
-
-# jobs:
-#   build:
-
-#     runs-on: ubuntu-latest
-
-#     strategy:
-#       matrix:
-#         node-version: [ 12.x ]
-
-#     steps:
-#       - uses: actions/checkout@v2
-
-#       - name: Use Node.js ${{ matrix.node-version }}
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: ${{ matrix.node-version }}
-
-#       - name: Install Next.js dependencies
-#         run: npm ci
-
-#       - name: Build Next.js
-#         run: npm run build
