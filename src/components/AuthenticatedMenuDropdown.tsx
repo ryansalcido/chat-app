@@ -14,7 +14,7 @@ const AuthenticatedMenuDropdown = ({ session }: AuthenticatedMenuDropdownProps):
       {({ open }) => (
         <Fragment>
           <Menu.Button className="flex items-center space-x-1 focus:outline-none">
-            <img src={session.user?.image} height={36} width={36} className={`${open && "border-green-600"} rounded-full shadow-md border-2 border-white`} />
+            <img src={session.user?.image} height={36} width={36} className={`${open && "border-green-600"} rounded-full shadow-md border-2`} />
             <ChevronDownIcon
               className={`${open ? "transition delay-300 transform rotate-180" : "transition delay-300 transform rotate-0"} w-6 h-6 text-white`}
             />
