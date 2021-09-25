@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:14.17.3-alpine3.11
+FROM node:16.6.2-alpine3.11
 
 WORKDIR /usr/src/app
 
@@ -15,4 +15,4 @@ RUN chown -R node:node /usr/src/app
 
 USER node
 
-CMD ["npm", "start"]
+CMD [ "npm", "start" ]

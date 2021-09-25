@@ -56,7 +56,7 @@ const Login = (): JSX.Element => {
           className="flex text-lg items-center space-x-3 w-full bg-gray-700 text-white p-3 rounded hover:bg-gray-600 shadow-md focus:outline-none transition ease-out duration-500"
           onClick={() => signIn("github")}
         >
-          <Image src={`${process.env.BASE_PATH}/github.svg`} width={26} height={26} />
+          <Image src={`${process.env.BASE_PATH}/github.svg`} width={26} height={26} alt="GitHub login button" />
           <span>
             Log in with GitHub
           </span>
@@ -66,7 +66,7 @@ const Login = (): JSX.Element => {
           className="flex text-lg items-center space-x-3 w-full bg-blue-400 text-white p-3 rounded hover:bg-blue-500 shadow-md focus:outline-none transition ease-out duration-500"
           onClick={() => signIn("twitter")}
         >
-          <Image src={`${process.env.BASE_PATH}/twitter.svg`} width={26} height={26} />
+          <Image src={`${process.env.BASE_PATH}/twitter.svg`} width={26} height={26} alt="Twitter login button" />
           <span>
             Log in with Twitter
           </span>

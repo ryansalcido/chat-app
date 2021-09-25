@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { DefaultSession } from "next-auth";
 import { signOut } from "next-auth/client";
 import { Menu, Transition } from "@headlessui/react";
@@ -14,7 +15,7 @@ const AuthenticatedMenuDropdown = ({ session }: AuthenticatedMenuDropdownProps):
       {({ open }) => (
         <Fragment>
           <Menu.Button className="flex items-center space-x-1 focus:outline-none">
-            <img src={session.user?.image} height={36} width={36} className={`${open && "border-green-600"} rounded-full shadow-md border-2`} />
+            <Image src={session.user?.image} height={36} width={36} className={`${open && "border-green-600"} rounded-full shadow-md border-2`} alt="User avatar" />
             <ChevronDownIcon
               className={`${open ? "transition delay-300 transform rotate-180" : "transition delay-300 transform rotate-0"} w-6 h-6 text-white`}
             />
