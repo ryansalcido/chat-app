@@ -1,5 +1,5 @@
 # Next.js Chat Application
-![CI](https://github.com/ryansalcido/chat-app/actions/workflows/nextjs.yml/badge.svg)
+![CI](https://github.com/ryansalcido/chat-app/actions/workflows/ci.yml/badge.svg)
 
 https://ryansalcido.com/chat
 
@@ -83,7 +83,7 @@ Example: When running Docker build, the `--secret` flag can be set to `--secret 
 To run the newly created Docker image:
 ```sh
 # Format: docker run -d --name [custom_name] -v [local_absolute_path_to_secrets_file]:[/usr/src/app/.env.production] -p 3000:3000 [image_name]
-docker run -d --name chat_app \   
+docker run -d --name chat_app \
 -v /home/user/chat-app/.env.production:/usr/src/app/.env.production \
 -p 3000:3000 \
 chat_app
