@@ -7,6 +7,9 @@
     "plugin:@typescript-eslint/recommended",
     "next"
   ],
+  "env": {
+    "jest": true
+  },
   "rules": {
     "quotes": [ "error", "double" ],
     "semi": [ "error", "always" ],

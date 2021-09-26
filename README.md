@@ -1,4 +1,6 @@
 # Next.js Chat Application
+![CI](https://github.com/ryansalcido/chat-app/actions/workflows/nextjs.yml/badge.svg)
+
 https://ryansalcido.com/chat
 
 ## Technical Stack
@@ -53,6 +55,9 @@ Runs eslint on the `src` directory.
 
 ### `npm run lint:fix`
 Runs eslint on the `src` directory and automatically fixes problems. Note that not all eslint errors can be automatically fixed.
+
+### `npm test`
+Runs test using Jest, `@testing-library/react`, and `@testing-library/jest-dom`.
 
 ## Docker
 The application can be run in Docker for development and production use.
