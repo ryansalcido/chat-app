@@ -1,4 +1,6 @@
 # Next.js Chat Application
+![CI](https://github.com/ryansalcido/chat-app/actions/workflows/ci.yml/badge.svg)
+
 https://ryansalcido.com/chat
 
 ## Technical Stack
@@ -54,6 +56,9 @@ Runs eslint on the `src` directory.
 ### `npm run lint:fix`
 Runs eslint on the `src` directory and automatically fixes problems. Note that not all eslint errors can be automatically fixed.
 
+### `npm test`
+Runs test using Jest, `@testing-library/react`, and `@testing-library/jest-dom`.
+
 ## Docker
 The application can be run in Docker for development and production use.
 The Dockerfile for this application uses [Docker BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) that allows for secrets (e.g., `.env` files) to be passed in when building new images, but will not end up being stored in the final image.
@@ -78,7 +83,7 @@ Example: When running Docker build, the `--secret` flag can be set to `--secret 
 To run the newly created Docker image:
 ```sh
 # Format: docker run -d --name [custom_name] -v [local_absolute_path_to_secrets_file]:[/usr/src/app/.env.production] -p 3000:3000 [image_name]
-docker run -d --name chat_app \   
+docker run -d --name chat_app \
 -v /home/user/chat-app/.env.production:/usr/src/app/.env.production \
 -p 3000:3000 \
 chat_app
