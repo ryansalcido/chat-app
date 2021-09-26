@@ -1,4 +1,4 @@
-export const fakeLocalStorage = (function () {
+export const mockLocalStorage = (function () {
   let store = {};
 
   return {

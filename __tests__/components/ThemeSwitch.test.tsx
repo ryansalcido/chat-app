@@ -1,12 +1,12 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import ThemeSwitch from "../../src/components/ThemeSwitch";
-import { fakeLocalStorage } from "../../utils/testUtils";
+import { mockLocalStorage } from "../../utils/testUtils";
 
 describe("ThemeSwitch", () => {
   beforeEach(() => {
     Object.defineProperty(window, "localStorage", {
-      value: fakeLocalStorage,
+      value: mockLocalStorage,
     });
 
     Object.defineProperty(window, "matchMedia", {

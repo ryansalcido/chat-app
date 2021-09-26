@@ -1,13 +1,13 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import { useTheme } from "../../src/hooks/useTheme";
-import { fakeLocalStorage } from "../../utils/testUtils";
+import { mockLocalStorage } from "../../utils/testUtils";
 
 const THEME_KEY = "theme";
 
 describe("useTheme()", () => {
   beforeEach(() => {
     Object.defineProperty(window, "localStorage", {
-      value: fakeLocalStorage,
+      value: mockLocalStorage,
     });
 
     Object.defineProperty(window, "matchMedia", {
