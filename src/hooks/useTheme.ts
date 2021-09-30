@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useTheme = (): [ string, () => void ] => {
+export const useTheme = (): { theme: string, toggleTheme: () => void } => {
   const [ theme, setTheme ] = useState(""); // Default theme: 'light'
 
   /**
@@ -32,5 +32,5 @@ export const useTheme = (): [ string, () => void ] => {
     setTheme(prev => prev === "dark" ? "" : "dark");
   };
 
-  return [ theme, toggleTheme ];
+  return { theme, toggleTheme };
 };

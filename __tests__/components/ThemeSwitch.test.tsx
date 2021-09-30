@@ -25,7 +25,7 @@ describe("ThemeSwitch", () => {
   it("Should be set to light theme (false)", () => {
     const mockedToggleTheme = jest.fn();
     jest.mock("../../src/hooks/useTheme", () => ({
-      useTheme: () => ([ "" , mockedToggleTheme ]),
+      useTheme: () => ([ "", mockedToggleTheme ]),
     }));
     const { getByRole } = render(<ThemeSwitch />);
     const switchRole = getByRole("switch");
@@ -42,7 +42,7 @@ describe("ThemeSwitch", () => {
     });
     const mockedToggleTheme = jest.fn();
     jest.mock("../../src/hooks/useTheme", () => ({
-      useTheme: () => ([ "dark" , mockedToggleTheme ]),
+      useTheme: () => ([ "dark", mockedToggleTheme ]),
     }));
     const { getByRole } = render(<ThemeSwitch />);
     const switchRole = getByRole("switch");
@@ -53,13 +53,12 @@ describe("ThemeSwitch", () => {
   it("Should toggle from light to dark theme when clicked", () => {
     const mockedToggleTheme = jest.fn();
     jest.mock("../../src/hooks/useTheme", () => ({
-      useTheme: () => ([ "dark" , mockedToggleTheme ]),
+      useTheme: () => ([ "dark", mockedToggleTheme ]),
     }));
 
     const { getByRole } = render(<ThemeSwitch />);
     getByRole("switch").click();
-    fireEvent.change(getByRole("switch"), { target: { checked: "" } });
-
+    fireEvent.change(getByRole("switch"), { target: { checked: true } });
 
     expect(getByRole("switch")).toBeChecked();
   });

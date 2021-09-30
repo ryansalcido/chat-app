@@ -2,7 +2,7 @@ import { Switch } from "@headlessui/react";
 import { useTheme } from "../hooks/useTheme";
 
 const ThemeSwitch = (): JSX.Element => {
-  const [ theme, toggleTheme ] = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   const isDarkMode = theme === "dark";
 
