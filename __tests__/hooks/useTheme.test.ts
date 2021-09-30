@@ -31,33 +31,30 @@ describe("useTheme()", () => {
       };
     });
     const { result } = renderHook(() => useTheme());
-    const [ theme, ] = result.current;
 
-    expect(theme).toBe("dark");
+    expect(result.current.theme).toBe("dark");
   });
 
   it("Should default to light theme", () => {
     const { result } = renderHook(() => useTheme());
-    const [ theme, ] = result.current;
 
-    expect(theme).toBe("");
+    expect(result.current.theme).toBe("");
   });
 
   it("Should toggle from light to dark theme", () => {
     const { result } = renderHook(() => useTheme());
 
-    expect(result.current[0]).toBe("");
+    expect(result.current.theme).toBe("");
 
-    act(() => result.current[1]());
+    act(() => result.current.toggleTheme());
 
-    expect(result.current[0]).toBe("dark");
+    expect(result.current.theme).toBe("dark");
   });
 
   it("Should use theme set in localStorage", () => {
     localStorage.setItem(THEME_KEY, "dark");
     const { result } = renderHook(() => useTheme());
-    const [ theme, ] = result.current;
 
-    expect(theme).toBe("dark");
+    expect(result.current.theme).toBe("dark");
   });
 });
